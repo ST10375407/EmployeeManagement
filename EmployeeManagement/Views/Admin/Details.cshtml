@@ -103,3 +103,14 @@
     <a asp-action="Details" asp-route-id="@Model?.Id">Approve</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+@model EmployeeManagement.Models.Employee
+
+<h2>Upload File for @Model.LectureName @Model.LectureSurname</h2>
+
+<form asp-action="UploadFile" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="uploadedFile">Select file to upload</label>
+        <input type="file" name="uploadedFile" />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>

@@ -20,5 +20,7 @@
 
         public string? IsApproved { get; set; } 
 
+        public string? SupportingDocument { get; set; }
+
     }
 }

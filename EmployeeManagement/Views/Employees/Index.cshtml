@@ -42,7 +42,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.EndDate)
             </th>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.SupportingDocument)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -79,7 +81,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
-            
+                <td>
+                    @if (!string.IsNullOrEmpty(item.SupportingDocument))
+                    {
+                        <a href="~/uploads/@item.SupportingDocument" target="_blank">Download Document</a>
+                    }
+                    else
+                    {
+                        <span>No Document</span>
+                    }
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

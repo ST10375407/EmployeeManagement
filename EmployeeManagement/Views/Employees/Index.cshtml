@@ -4,84 +4,86 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Submit your Form</h1>
+<h1 class="pink-text">Submit your Form</h1>
 
 <p>
-    <a asp-action="Create">Add New Claim Form</a>
+    <a asp-action="Create" class="btn btn-primary pink-bg text-white">Add New Claim Form</a>
 </p>
-<table class="table">
+
+<table class="table pink-bg">
     <thead>
-        <tr>
-            <th>
+        <tr class="pink-bg">
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.LectureName)
             </th>
-            <th>
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.LectureSurname)
             </th>
-            <th>
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.EmployeeNo)
             </th>
-            <th>
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.ContactDetails)
             </th>
-            <th>
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.Model)
             </th>
-            <th>
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.Program)
             </th>
-            <th>
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.NumberOfHours)
             </th>
-            <th>
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.HourlyRate)
             </th>
-            <th>
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
-            <th>
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.EndDate)
             </th>
-            <th>
+            <th class="pink-text">
                 @Html.DisplayNameFor(model => model.SupportingDocument)
             </th>
-            <th></th>
+            <th class="pink-text"></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LectureName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LectureSurname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmployeeNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Program)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfHours)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HourlyRate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-                <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="pink-text">
+                    @Html.DisplayFor(modelItem => item.LectureName)
+                </td>
+                <td class="pink-text">
+                    @Html.DisplayFor(modelItem => item.LectureSurname)
+                </td>
+                <td class="pink-text">
+                    @Html.DisplayFor(modelItem => item.EmployeeNo)
+                </td>
+                <td class="pink-text">
+                    @Html.DisplayFor(modelItem => item.ContactDetails)
+                </td>
+                <td class="pink-text">
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td class="pink-text">
+                    @Html.DisplayFor(modelItem => item.Program)
+                </td>
+                <td class="pink-text">
+                    @Html.DisplayFor(modelItem => item.NumberOfHours)
+                </td>
+                <td class="pink-text">
+                    @Html.DisplayFor(modelItem => item.HourlyRate)
+                </td>
+                <td class="pink-text">
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td class="pink-text">
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td class="pink-text">
                     @if (!string.IsNullOrEmpty(item.SupportingDocument))
                     {
                         <a href="~/uploads/@item.SupportingDocument" target="_blank">Download Document</a>
@@ -91,12 +93,12 @@
                         <span>No Document</span>
                     }
                 </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                <td class="pink-text">
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

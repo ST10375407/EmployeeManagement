@@ -1,105 +1,189 @@
 ﻿@model EmployeeManagement.Models.Employee
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Claim";
 }
 
-<h1>Create</h1>
+<style>
+    /* Pink-themed styles */
+    body {
+        background-color: #ffe6f2;
+        font-family: Arial, sans-serif;
+    }
 
-<h4>Claim form</h4>
-<hr />
-<div class="row">
-    <div class="col-md-12">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="row">
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="LectureName" class="control-label"></label>
-                <input asp-for="LectureName" class="form-control" />
-                <span asp-validation-for="LectureName" class="text-danger"></span>
+    .form-container {
+        background-color: #ffccdd;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 800px;
+    }
+
+    h1, h4 {
+        color: #ff4d94;
+        text-align: center;
+    }
+
+    label {
+        color: #99004d;
+    }
+
+    .form-control {
+        border: 2px solid #ff99cc;
+        border-radius: 5px;
+    }
+
+    .form-control:focus {
+        border-color: #ff4d94;
+        box-shadow: 0 0 5px #ff4d94;
+    }
+
+    .btn-primary {
+        background-color: #ff4d94;
+        border-color: #ff1a75;
+    }
+
+    .btn-primary:hover {
+        background-color: #ff1a75;
+        border-color: #cc0052;
+    }
+
+    .btn-secondary {
+        background-color: #ffe6f2;
+        border-color: #ff99cc;
+        color: #99004d;
+    }
+
+    .btn-secondary:hover {
+        background-color: #ffccdd;
+        border-color: #ff4d94;
+        color: #99004d;
+    }
+
+    .text-danger {
+        color: #b30047;
+    }
+</style>
+
+<div class="form-container">
+    <h1>Create Claim</h1>
+    <h4>Claim Form</h4>
+    <hr />
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <!-- Lecture Name -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="LectureName" class="control-label"></label>
+                    <input asp-for="LectureName" class="form-control" />
+                    <span asp-validation-for="LectureName" class="text-danger"></span>
+                </div>
             </div>
+
+            <!-- Lecture Surname -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="LectureSurname" class="control-label"></label>
+                    <input asp-for="LectureSurname" class="form-control" />
+                    <span asp-validation-for="LectureSurname" class="text-danger"></span>
+                </div>
             </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="LectureSurname" class="control-label"></label>
-                <input asp-for="LectureSurname" class="form-control" />
-                <span asp-validation-for="LectureSurname" class="text-danger"></span>
+
+            <!-- Employee Number -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="EmployeeNo" class="control-label"></label>
+                    <input asp-for="EmployeeNo" class="form-control" />
+                    <span asp-validation-for="EmployeeNo" class="text-danger"></span>
+                </div>
             </div>
+
+            <!-- Contact Details -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="ContactDetails" class="control-label"></label>
+                    <input asp-for="ContactDetails" class="form-control" />
+                    <span asp-validation-for="ContactDetails" class="text-danger"></span>
+                </div>
             </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="EmployeeNo" class="control-label"></label>
-                <input asp-for="EmployeeNo" class="form-control" />
-                <span asp-validation-for="EmployeeNo" class="text-danger"></span>
+
+            <!-- Model -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Model" class="control-label"></label>
+                    <input asp-for="Model" class="form-control" />
+                    <span asp-validation-for="Model" class="text-danger"></span>
+                </div>
             </div>
+
+            <!-- Program -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Program" class="control-label"></label>
+                    <input asp-for="Program" class="form-control" />
+                    <span asp-validation-for="Program" class="text-danger"></span>
+                </div>
             </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="ContactDetails" class="control-label"></label>
-                <input asp-for="ContactDetails" class="form-control" />
-                <span asp-validation-for="ContactDetails" class="text-danger"></span>
+
+            <!-- Number of Hours -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="NumberOfHours" class="control-label"></label>
+                    <input asp-for="NumberOfHours" class="form-control" />
+                    <span asp-validation-for="NumberOfHours" class="text-danger"></span>
+                </div>
             </div>
+
+            <!-- Hourly Rate -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="HourlyRate" class="control-label"></label>
+                    <input asp-for="HourlyRate" class="form-control" />
+                    <span asp-validation-for="HourlyRate" class="text-danger"></span>
+                </div>
             </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Model" class="control-label"></label>
-                <input asp-for="Model" class="form-control" />
-                <span asp-validation-for="Model" class="text-danger"></span>
+
+            <!-- Start Date -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
             </div>
+
+            <!-- End Date -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label"></label>
+                    <input asp-for="EndDate" class="form-control" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
             </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Program" class="control-label"></label>
-                <input asp-for="Program" class="form-control" />
-                <span asp-validation-for="Program" class="text-danger"></span>
+
+            <!-- Supporting Document -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="SupportingDocument" class="control-label">Upload Document</label>
+                    <input type="file" asp-for="SupportingDocument" class="form-control" />
+                    <span asp-validation-for="SupportingDocument" class="text-danger"></span>
+                </div>
             </div>
-            </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="NumberOfHours" class="control-label"></label>
-                <input asp-for="NumberOfHours" class="form-control" />
-                <span asp-validation-for="NumberOfHours" class="text-danger"></span>
-            </div>
-            </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="HourlyRate" class="control-label"></label>
-                <input asp-for="HourlyRate" class="form-control" />
-                <span asp-validation-for="HourlyRate" class="text-danger"></span>
-            </div>
-            </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-                    <div class="form-group">
-                        <label asp-for="SupportingDocument" class="control-label">Upload Document</label>
-                        <input type="file" asp-for="SupportingDocument" class="form-control" />
-                        <span asp-validation-for="SupportingDocument" class="text-danger"></span>
-                    </div>
-           </div>
-           </div>
-            <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group mt-3">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="text-center mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

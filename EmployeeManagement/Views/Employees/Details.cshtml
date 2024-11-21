@@ -4,99 +4,160 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<style>
+    /* Pink-themed styles */
+    body {
+        background-color: #ffe6f2;
+        font-family: Arial, sans-serif;
+    }
 
-<div>
+    .details-container {
+        background-color: #ffccdd;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 800px;
+    }
+
+    h1, h4 {
+        color: #ff4d94;
+        text-align: center;
+    }
+
+    .row {
+        color: #99004d;
+    }
+
+    dt {
+        font-weight: bold;
+    }
+
+    dd {
+        background-color: #ffe6f2;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    a {
+        color: #ff4d94;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: #cc0052;
+            text-decoration: underline;
+        }
+
+    .btn-secondary {
+        background-color: #ffe6f2;
+        border: 1px solid #ff99cc;
+        color: #99004d;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #ffccdd;
+            border-color: #ff4d94;
+            color: #99004d;
+        }
+</style>
+
+<div class="details-container">
+    <h1>Details</h1>
     <h4>Employee</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.LectureName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LectureName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.LectureSurname)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LectureSurname)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EmployeeNo)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EmployeeNo)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ContactDetails)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ContactDetails)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Model)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Model)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Program)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Program)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NumberOfHours)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NumberOfHours)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.HourlyRate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.HourlyRate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.StartDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StartDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EndDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EndDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CreatedById)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CreatedById)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CreatedOn)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CreatedOn)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ModifiedByID)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ModifiedByID)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ModifiedOn)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ModifiedOn)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn-secondary">Edit</a> |
+        <a asp-action="Index" class="btn-secondary">Back to List</a>
+    </div>
 </div>

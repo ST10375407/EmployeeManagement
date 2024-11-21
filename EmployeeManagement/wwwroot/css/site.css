@@ -20,3 +20,20 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.label-color {
+    color: #007bff; /* Replace with your desired color */
+}
+
+.input-color {
+    background-color: #f0f8ff; /* Replace with your desired color */
+    border-color: #007bff; /* Adjust as needed */
+}
+/* Adding color */
+.pink-text {
+    color: black;
+}
+
+.pink-bg {
+    background-color: pink;
+}

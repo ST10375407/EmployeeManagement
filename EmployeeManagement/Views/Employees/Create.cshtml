@@ -34,20 +34,20 @@
         border-radius: 5px;
     }
 
-    .form-control:focus {
-        border-color: #ff4d94;
-        box-shadow: 0 0 5px #ff4d94;
-    }
+        .form-control:focus {
+            border-color: #ff4d94;
+            box-shadow: 0 0 5px #ff4d94;
+        }
 
     .btn-primary {
         background-color: #ff4d94;
         border-color: #ff1a75;
     }
 
-    .btn-primary:hover {
-        background-color: #ff1a75;
-        border-color: #cc0052;
-    }
+        .btn-primary:hover {
+            background-color: #ff1a75;
+            border-color: #cc0052;
+        }
 
     .btn-secondary {
         background-color: #ffe6f2;
@@ -55,11 +55,11 @@
         color: #99004d;
     }
 
-    .btn-secondary:hover {
-        background-color: #ffccdd;
-        border-color: #ff4d94;
-        color: #99004d;
-    }
+        .btn-secondary:hover {
+            background-color: #ffccdd;
+            border-color: #ff4d94;
+            color: #99004d;
+        }
 
     .text-danger {
         color: #b30047;
@@ -145,6 +145,14 @@
                 </div>
             </div>
 
+            <!-- Automatically calculated final payment -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="FinalPayment" class="control-label">Final Payment</label>
+                    <input type="text" id="FinalPayment" class="form-control" disabled />
+                </div>
+            </div>
+
             <!-- Start Date -->
             <div class="col-md-6">
                 <div class="form-group">
@@ -185,5 +193,33 @@
 </div>
 
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Trigger auto-calculation on input change
+            $('#NumberOfHours, #HourlyRate').on('input', function () {
+                var hours = $('#NumberOfHours').val();
+                var rate = $('#HourlyRate').val();
+
+                if (hours && rate) {
+                    var finalPayment = hours * rate;
+                    $('#FinalPayment').val(finalPayment.toFixed(2)); // Display the final payment
+                }
+            });
+
+            // Validation for numeric values
+            $('#NumberOfHours, #HourlyRate').on('input', function () {
+                var value = $(this).val();
+                if (!$.isNumeric(value) && value !== '') {
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

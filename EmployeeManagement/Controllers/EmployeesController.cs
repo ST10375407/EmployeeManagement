@@ -1,11 +1,12 @@
-﻿using EmployeeManagement.Data; // Update this with your actual namespace
-using EmployeeManagement.Models; // Update this with your actual namespace
+﻿using EmployeeManagement.Data; // Update 
+using EmployeeManagement.Models; // Update 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
@@ -40,6 +41,9 @@ namespace EmployeeManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Calculate final payment (Number of Hours * Hourly Rate)
+                employee.FinalPayment = employee.NumberOfHours * employee.HourlyRate;
+
                 // Handle the file upload if a file was submitted
                 if (supportingDocument != null)
                 {
@@ -65,6 +69,7 @@ namespace EmployeeManagement.Controllers
                     employee.SupportingDocument = uniqueFileName;
                 }
 
+                // Save the employee claim in the database
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -21,6 +21,7 @@
         public string? IsApproved { get; set; } 
 
         public string? SupportingDocument { get; set; }
+        public decimal FinalPayment { get; set; } // Automatically calculated final payment
 
     }
 }

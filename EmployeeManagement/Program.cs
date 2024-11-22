@@ -17,7 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Register FluentValidation
-builder.Services.AddValidatorsFromAssemblyContaining<EmployeeValidator>(); // This will register the validator for Employee model
+builder.Services.AddValidatorsFromAssemblyContaining<EmployeeValidator>(); // Registers EmployeeValidator
 
 builder.Services.AddControllersWithViews();
 

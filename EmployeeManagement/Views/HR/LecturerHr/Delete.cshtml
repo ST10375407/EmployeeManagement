@@ -1,0 +1,67 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Delete Employee";
+}
+
+<h1>Delete Employee</h1>
+
+<div class="alert alert-warning">
+    <strong>Warning!</strong> Are you sure you want to delete this employee record? This action cannot be undone.
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h4>Employee Details</h4>
+    </div>
+    <div class="card-body">
+        <form method="post" onsubmit="return confirm('Are you sure you want to delete this employee?');">
+            <div class="form-group">
+                <label for="Id">Employee ID</label>
+                <input type="text" class="form-control" id="Id" name="Id" value="@Model.Id" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Name">Lecturer Name</label>
+                <input type="text" class="form-control" id="Name" name="Name" value="@Model.LectureName" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Position"> Module</label>
+                <input type="text" class="form-control" id="Position" name="Position" value="@Model.Model" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="HourlyRate">Hourly Rate</label>
+                <input type="text" class="form-control" id="HourlyRate" name="HourlyRate" value="@Model.HourlyRate" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="NumberOfHours">Number of Hours</label>
+                <input type="text" class="form-control" id="NumberOfHours" name="NumberOfHours" value="@Model.NumberOfHours" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="FinalPayment">Final Payment</label>
+                <input type="text" class="form-control" id="FinalPayment" name="FinalPayment" value="@Model.FinalPayment" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="SupportingDocument">Supporting Document</label>
+                @if (!string.IsNullOrEmpty(Model.SupportingDocument))
+                {
+                    <a href="@Url.Content("~/uploads/" + Model.SupportingDocument)" target="_blank" class="btn btn-info">Download Document</a>
+                }
+                else
+                {
+                    <span>No document uploaded</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

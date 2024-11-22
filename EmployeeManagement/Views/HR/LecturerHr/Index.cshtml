@@ -1,0 +1,196 @@
+﻿@model IEnumerable<EmployeeManagement.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employees Index";
+}
+
+<style>
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5; /* Light background for contrast */
+        color: #000; /* Black text for readability */
+    }
+
+    h1 {
+        color: #ff69b4; /* Pink color for headers */
+        text-align: center;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        background-color: #fff; /* White background for the table */
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #ccc; /* Light gray border for the table */
+    }
+
+        .table th, .table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Light border for rows */
+        }
+
+        .table thead {
+            background-color: #ff69b4; /* Pink header background */
+            color: #fff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1; /* Light hover effect for rows */
+        }
+
+    .btn {
+        padding: 8px 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        margin: 5px;
+        display: inline-block;
+    }
+
+    .btn-warning {
+        background-color: #ff69b4; /* Pink for Edit */
+        color: #fff;
+        border: none;
+    }
+
+    .btn-danger {
+        background-color: #ff1744; /* Red for Delete */
+        color: #fff;
+        border: none;
+    }
+
+    .btn-info {
+        background-color: #ff4081; /* Light pink for Generate Invoice */
+        color: #fff;
+        border: none;
+    }
+
+    .btn-success {
+        background-color: #ff80ab; /* Light pink for Create New Claim */
+        color: #fff;
+        border: none;
+    }
+
+    .btn-primary {
+        background-color: #ff4081; /* Pink for Generate Report */
+        color: #fff;
+        border: none;
+    }
+
+    /* Action Buttons Container */
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .action-buttons a {
+            margin: 0 10px;
+        }
+</style>
+
+<h1>Employee Claims List</h1>
+
+<!-- Employee Claims List Table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Lecture Name</th>
+            <th>Lecture Surname</th>
+            <th>Employee No</th>
+            <th>Contact Details</th>
+            <th>Program</th>
+            <th>Number of Hours</th>
+            <th>Hourly Rate</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Supporting Document</th>
+            <th>Final Payment</th>
+            <th>Is Approved</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.LectureName</td>
+                <td>@employee.LectureSurname</td>
+                <td>@employee.EmployeeNo</td>
+                <td>@employee.ContactDetails</td>
+                <td>@employee.Program</td>
+                <td>@employee.NumberOfHours</td>
+                <td>@employee.HourlyRate</td>
+                <td>@employee.StartDate.ToString("yyyy-MM-dd")</td>
+                <td>@employee.EndDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(employee.SupportingDocument))
+                    {
+                        <a href="@Url.Content("~/uploads/" + employee.SupportingDocument)" target="_blank">View Document</a>
+                    }
+                    else
+                    {
+                        <span>No Document</span>
+                    }
+                </td>
+                <td>@employee.FinalPayment.ToString("C")</td>
+                <td>@employee.IsApproved</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@employee.Id" class="btn btn-danger">Delete</a>
+
+                    <!-- Generate Invoice button for approved claims -->
+                    @if (employee.IsApproved == "Approved")
+                    {
+                        <a asp-action="GenerateInvoice" asp-route-id="@employee.Id" class="btn btn-info">Generate Invoice</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Separate section for Approved Claims Report -->
+<h1>Approved Claims Report</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Lecture Name</th>
+            <th>Lecture Surname</th>
+            <th>Employee No</th>
+            <th>Program</th>
+            <th>Number of Hours</th>
+            <th>Hourly Rate</th>
+            <th>Final Payment</th>
+            <th>Approval Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model.Where(e => e.IsApproved == "Approved"))
+        {
+            <tr>
+                <td>@employee.LectureName</td>
+                <td>@employee.LectureSurname</td>
+                <td>@employee.EmployeeNo</td>
+                <td>@employee.Program</td>
+                <td>@employee.NumberOfHours</td>
+                <td>@employee.HourlyRate</td>
+                <td>@employee.FinalPayment.ToString("C")</td>
+                <td>@employee.IsApproved</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Action Buttons -->
+<div class="action-buttons">
+    <a asp-action="Create" class="btn btn-success">Create New Claim</a>
+    <a asp-action="GenerateReport" class="btn btn-primary">Generate Report</a> <!-- Button to generate a report of approved claims -->
+</div>
